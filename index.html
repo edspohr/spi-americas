@@ -1,723 +1,450 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro de Proveedor - SPI Américas</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Vinculación de Cliente</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de la fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      :root {
-        color-scheme: light;
-        font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.4;
-        --primary: #005f73;
-        --primary-light: #0a9396;
-        --primary-dark: #003845;
-        --surface: #f7fafc;
-        --border: #d9e2ec;
-        --accent: #94d2bd;
-        --danger: #c1121f;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: var(--surface);
-        color: #1f2933;
-      }
-
-      header {
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        color: white;
-        padding: 2.5rem 1.5rem;
-        text-align: center;
-      }
-
-      header h1 {
-        margin: 0 0 0.5rem;
-        font-size: clamp(1.8rem, 4vw, 2.6rem);
-      }
-
-      header p {
-        margin: 0;
-        font-size: 1.05rem;
-        opacity: 0.9;
-      }
-
-      main {
-        max-width: 1100px;
-        margin: -3rem auto 4rem;
-        padding: 0 1.5rem 4rem;
-      }
-
-      .card {
-        background: white;
-        border-radius: 18px;
-        padding: 2rem;
-        box-shadow: 0 25px 60px -35px rgba(15, 23, 42, 0.45);
-        border: 1px solid rgba(15, 23, 42, 0.04);
-        margin-bottom: 2rem;
-      }
-
-      h2 {
-        margin-top: 0;
-        color: var(--primary-dark);
-        font-size: 1.5rem;
-      }
-
-      h3 {
-        margin-top: 2.5rem;
-        color: var(--primary);
-      }
-
-      .grid {
-        display: grid;
-        gap: 1.25rem;
-      }
-
-      .grid.two {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      }
-
-      .grid.three {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-
-      label {
-        font-weight: 600;
-        display: block;
-        margin-bottom: 0.35rem;
-      }
-
-      label span {
-        color: var(--danger);
-        font-size: 0.85rem;
-        margin-left: 0.25rem;
-      }
-
-      input[type="text"],
-      input[type="email"],
-      input[type="tel"],
-      input[type="url"],
-      input[type="date"],
-      textarea,
-      select {
-        width: 100%;
-        padding: 0.75rem 0.85rem;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        background: #f9fbfd;
-        font-size: 0.95rem;
-        transition: border 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      textarea {
-        resize: vertical;
-        min-height: 120px;
-      }
-
-      input:focus,
-      textarea:focus,
-      select:focus {
-        border-color: var(--primary-light);
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(148, 210, 189, 0.4);
-      }
-
-      .radio-group,
-      .checkbox-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        align-items: center;
-      }
-
-      .radio-group label,
-      .checkbox-group label {
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      input[type="file"] {
-        padding: 0.75rem 0.85rem;
-        background: #fff;
-        border: 2px dashed var(--border);
-        border-radius: 12px;
-      }
-
-      .extracted-output {
-        margin-top: 1rem;
-        border-radius: 12px;
-        border: 1px solid var(--border);
-        background: #f8fafc;
-        padding: 1.25rem;
-        font-size: 0.95rem;
-      }
-
-      .extracted-output dl {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 0.75rem 1.25rem;
-        margin: 0;
-      }
-
-      .extracted-output dt {
-        font-weight: 600;
-        color: var(--primary-dark);
-      }
-
-      .extracted-output dd {
-        margin: 0;
-        color: #27313d;
-      }
-
-      .contact-section {
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1.5rem;
-        background: linear-gradient(180deg, rgba(148, 210, 189, 0.12), rgba(148, 210, 189, 0.02));
-      }
-
-      .contact-section h4 {
-        margin: 0 0 1rem;
-        color: var(--primary-dark);
-      }
-
-      .declarations {
-        display: grid;
-        gap: 1rem;
-        margin-top: 1.5rem;
-      }
-
-      .declarations label {
-        font-weight: 500;
-      }
-
-      button {
-        margin-top: 2rem;
-        padding: 0.95rem 1.75rem;
-        background: var(--primary);
-        color: white;
-        border: none;
-        border-radius: 999px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: background 0.2s ease, transform 0.2s ease;
-      }
-
-      button:hover {
-        background: var(--primary-light);
-        transform: translateY(-1px);
-      }
-
-      .helper-text {
-        font-size: 0.85rem;
-        color: #52606d;
-        margin-top: 0.35rem;
-      }
-
-      .file-card {
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 1.5rem;
-        background: rgba(148, 210, 189, 0.08);
-      }
-
-      @media (max-width: 720px) {
-        main {
-          margin-top: -2rem;
-          padding: 0 1rem 3rem;
+        /* Estilo personalizado para la fuente Inter */
+        body {
+            font-family: 'Inter', sans-serif;
         }
-
-        .card {
-          padding: 1.5rem;
+        /* Estilo para el loader */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
         }
-      }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
-  </head>
-  <body>
-    <header>
-      <h1>Alta de Proveedor - SPI Américas</h1>
-      <p>
-        Cargue los documentos legales de su empresa. Intentaremos precargar la
-        información automáticamente para completar el formulario bilingüe.
-      </p>
-    </header>
-    <main>
-      <form id="supplierForm" novalidate>
-        <section class="card" aria-labelledby="documentos">
-        <h2 id="documentos">1. Carga de documentos</h2>
-        <p>
-          Suba el <strong>Certificado de constitución legal</strong> y el
-          <strong>Documento de representación legal</strong>. La plataforma
-          analizará el texto para sugerir los datos de su compañía.
-        </p>
-        <div class="grid two">
-          <div class="file-card">
-            <label for="certificateUpload">Certificado de constitución legal</label>
-            <input id="certificateUpload" type="file" accept=".txt,.pdf,.doc,.docx,.rtf,.html,.htm" />
-            <p class="helper-text">
-              Se admite carga de archivos de texto o documentos. Para obtener
-              mejores resultados, convierta los PDF escaneados a texto.
-            </p>
-            <div id="certificateOutput" class="extracted-output" aria-live="polite">
-              Aún no se han extraído datos de este documento.
+</head>
+<body class="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 sm:p-10">
+        
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Formulario de Vinculación de Cliente</h1>
+            <p class="mt-2 text-gray-600">Completa los 4 pasos para registrar tu empresa. Puedes usar la IA para pre-llenar el formulario desde tus documentos.</p>
+        </header>
+
+        <!-- Mensaje de estado (éxito/error) -->
+        <div id="message" class="hidden mb-6 p-4 rounded-md text-sm"></div>
+
+        <form id="onboardingForm">
+            <!-- Paso 1: Carga de Documentos -->
+            <section class="border border-gray-200 rounded-lg p-6 mb-8">
+                <h2 class="text-xl font-semibold text-gray-800 mb-5">Paso 1: Cargar Documentos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fileConstitucion" class="block text-sm font-medium text-gray-700 mb-1">1. Certificado de Constitución Legal</label>
+                        <input type="file" id="fileConstitucion" accept=".pdf,.jpg,.jpeg,.png" class="block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-full file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-50 file:text-blue-700
+                            hover:file:bg-blue-100 cursor-pointer" required>
+                    </div>
+                    <div>
+                        <label for="fileLegal" class="block text-sm font-medium text-gray-700 mb-1">2. Documento Representación Legal</label>
+                        <input type="file" id="fileLegal" accept=".pdf,.jpg,.jpeg,.png" class="block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-full file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-50 file:text-blue-700
+                            hover:file:bg-blue-100 cursor-pointer" required>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <button type="button" id="extractButton" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.25 12l.813-2.846a4.5 4.5 0 00-3.09-3.09L13.125 5.25l-.813 2.846a4.5 4.5 0 00-3.09 3.09L6.375 12l2.846.813a4.5 4.5 0 003.09 3.09L13.125 18.75l.813-2.846a4.5 4.5 0 003.09-3.09L19.75 12l-2.846-.813z" />
+                        </svg>
+                        <span id="buttonText">Analizar Documentos y Pre-llenar Formulario</span>
+                        <div id="loader" class="loader hidden ml-3"></div>
+                    </button>
+                    <p class="text-xs text-gray-500 mt-2">Usa IA para leer los documentos y llenar los campos automáticamente.</p>
+                </div>
+            </section>
+
+            <!-- Paso 2: Información de la Empresa (Pre-llenado por IA) -->
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-800 mb-5">Paso 2: Verificar Información de la Empresa</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                    <!-- Campos del formulario PDF -->
+                    <div>
+                        <label for="razonSocial" class="block text-sm font-medium text-gray-700">Razón Social o Nombre Completo</label>
+                        <input type="text" id="razonSocial" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="tipoIdentificacion" class="block text-sm font-medium text-gray-700">Tipo de Identificación (Ej. NIT, RUT)</label>
+                        <input type="text" id="tipoIdentificacion" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="numeroIdentificacion" class="block text-sm font-medium text-gray-700">Número de Identificación</label>
+                        <input type="text" id="numeroIdentificacion" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="tipoPersona" class="block text-sm font-medium text-gray-700">Tipo de Persona (Natural / Jurídica)</label>
+                        <input type="text" id="tipoPersona" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="direccionFiscal" class="block text-sm font-medium text-gray-700">Dirección Fiscal</label>
+                        <input type="text" id="direccionFiscal" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="pais" class="block text-sm font-medium text-gray-700">País</label>
+                        <input type="text" id="pais" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="region" class="block text-sm font-medium text-gray-700">Región / Departamento</label>
+                        <input type="text" id="region" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                     <div>
+                        <label for="telefonoFijo" class="block text-sm font-medium text-gray-700">Teléfono Fijo</label>
+                        <input type="tel" id="telefonoFijo" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="paginaWeb" class="block text-sm font-medium text-gray-700">Página Web</label>
+                        <input type="url" id="paginaWeb" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div class="md:col-span-2"><hr class="my-2"></div>
+                    <div>
+                        <label for="nombreRepLegal" class="block text-sm font-medium text-gray-700">Nombre del Representante Legal</label>
+                        <input type="text" id="nombreRepLegal" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="cargoRepLegal" class="block text-sm font-medium text-gray-700">Cargo del Representante Legal</label>
+                        <input type="text" id="cargoRepLegal" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="telefonoRepLegal" class="block text-sm font-medium text-gray-700">Teléfono o Celular del Rep. Legal</label>
+                        <input type="tel" id="telefonoRepLegal" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                    <div>
+                        <label for="emailRepLegal" class="block text-sm font-medium text-gray-700">E-mail del Representante Legal</label>
+                        <input type="email" id="emailRepLegal" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Extraído por IA...">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Paso 3: Contactos de Facturación (Llenado Manual) -->
+            <section class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-800 mb-5">Paso 3: Completar Contactos de Facturación</h2>
+                <div class="space-y-6">
+                    <!-- Contacto Cuentas por Pagar -->
+                    <fieldset class="border border-gray-200 rounded-lg p-5">
+                        <legend class="text-base font-medium text-gray-900 px-2">Contacto Cuentas por Pagar y/o Tesorería</legend>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                            <div>
+                                <label for="contactoAPNombre" class="block text-sm font-medium text-gray-700">Nombre Contacto</label>
+                                <input type="text" id="contactoAPNombre" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+                            </div>
+                            <div>
+                                <label for="contactoAPEmail" class="block text-sm font-medium text-gray-700">E-mail</label>
+                                <input type="email" id="contactoAPEmail" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+                            </div>
+                            <div>
+                                <label for="contactoAPTelefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                                <input type="tel" id="contactoAPTelefono" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <!-- Contacto Financiero -->
+                     <fieldset class="border border-gray-200 rounded-lg p-5">
+                        <legend class="text-base font-medium text-gray-900 px-2">Contacto Financiero</legend>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                            <div>
+                                <label for="contactoFinNombre" class="block text-sm font-medium text-gray-700">Nombre Contacto</label>
+                                <input type="text" id="contactoFinNombre" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="contactoFinEmail" class="block text-sm font-medium text-gray-700">E-mail</label>
+                                <input type="email" id="contactoFinEmail" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="contactoFinTelefono" class="block text-sm font-medium text-gray-700">Celular</label>
+                                <input type="tel" id="contactoFinTelefono" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </section>
+
+            <!-- Paso 4: Declaraciones -->
+            <section class="mb-10">
+                <h2 class="text-xl font-semibold text-gray-800 mb-5">Paso 4: Declaraciones Finales</h2>
+                <div class="space-y-5">
+                    <div class="relative flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="pepDeclaration" name="pepDeclaration" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="pepDeclaration" class="font-medium text-gray-700">Declaración de Persona Políticamente Expuesta (PEP)</label>
+                            <p class="text-gray-500">Declaro bajo la gravedad de juramento que ni yo, ni los socios, ni los beneficiarios finales de la empresa somos personas políticamente expuestas (PEP) o hemos sido catalogados como tal.</p>
+                        </div>
+                    </div>
+                    <div class="relative flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="truthDeclaration" name="truthDeclaration" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="truthDeclaration" class="font-medium text-gray-700">Certificación de Veracidad</Ttxlabel>
+                            <p class="text-gray-500">Certifico que toda la información presentada en este formulario es fidedigna, completa y precisa.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Botón de Envío -->
+            <div class="pt-6 border-t border-gray-200">
+                <div class="flex justify-end">
+                    <button type="submit" class="w-full sm:w-auto px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        Enviar Formulario
+                    </button>
+                </div>
             </div>
-          </div>
-          <div class="file-card">
-            <label for="representationUpload">Documento de representación legal</label>
-            <input id="representationUpload" type="file" accept=".txt,.pdf,.doc,.docx,.rtf,.html,.htm" />
-            <p class="helper-text">
-              El contenido ayudará a completar la información del representante
-              legal y los datos de contacto.
-            </p>
-            <div id="representationOutput" class="extracted-output" aria-live="polite">
-              Aún no se han extraído datos de este documento.
-            </div>
-          </div>
-        </div>
-      </section>
-
-        <section class="card" aria-labelledby="info-empresa">
-        <h2 id="info-empresa">2. Información de la empresa / Company Information</h2>
-        <div class="grid two">
-          <div>
-            <label>Tipo de tercero / Third-party Type<span>*</span></label>
-            <div class="radio-group">
-              <label>
-                <input type="radio" name="thirdType" value="Cliente" /> Cliente / Customer
-              </label>
-              <label>
-                <input type="radio" name="thirdType" value="Proveedor" checked /> Proveedor / Supplier
-              </label>
-            </div>
-          </div>
-          <div>
-            <label>Tipo de persona / Entity Type<span>*</span></label>
-            <div class="radio-group">
-              <label>
-                <input type="radio" name="entityType" value="Natural" /> Natural Person
-              </label>
-              <label>
-                <input type="radio" name="entityType" value="Jurídica" checked /> Persona Jurídica / Legal Entity
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div>
-            <label for="businessName">Razón Social o Nombre Completo / Legal Name<span>*</span></label>
-            <input id="businessName" type="text" placeholder="Ingrese la razón social" required />
-          </div>
-          <div>
-            <label for="taxIdType">Identificación Fiscal / Tax ID Type</label>
-            <input id="taxIdType" type="text" placeholder="NIT, RUT, RFC..." />
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div>
-            <label for="taxIdNumber">Número de Identificación / Tax ID Number<span>*</span></label>
-            <input id="taxIdNumber" type="text" placeholder="Número de identificación fiscal" required />
-          </div>
-          <div>
-            <label for="website">Página Web / Website</label>
-            <input id="website" type="url" placeholder="https://empresa.com" />
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div>
-            <label for="fiscalAddress">Dirección Fiscal / Fiscal Address<span>*</span></label>
-            <input id="fiscalAddress" type="text" placeholder="Dirección fiscal" required />
-          </div>
-          <div>
-            <label for="physicalAddress">Dirección Física / Physical Address</label>
-            <input id="physicalAddress" type="text" placeholder="Dirección física" />
-          </div>
-        </div>
-
-        <div class="grid three">
-          <div>
-            <label for="country">País / Country<span>*</span></label>
-            <input id="country" type="text" placeholder="País" required />
-          </div>
-          <div>
-            <label for="region">Región / State</label>
-            <input id="region" type="text" placeholder="Región / Estado" />
-          </div>
-          <div>
-            <label for="mainActivity">Actividad principal / Main Activity</label>
-            <input id="mainActivity" type="text" placeholder="Actividad económica" />
-          </div>
-        </div>
-
-        <div class="grid three">
-          <div>
-            <label for="generalEmail">E-mail general / General Email<span>*</span></label>
-            <input id="generalEmail" type="email" placeholder="correo@empresa.com" required />
-          </div>
-          <div>
-            <label for="generalPhone">Teléfono fijo / Landline</label>
-            <input id="generalPhone" type="tel" placeholder="Número de teléfono" />
-          </div>
-          <div>
-            <label for="fax">Teléfono Fax / Fax Number</label>
-            <input id="fax" type="tel" placeholder="Número de fax" />
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div>
-            <label for="invoiceReception">Radicación de facturas / Invoice Reception</label>
-            <textarea id="invoiceReception" placeholder="Instrucciones o dirección para radicar facturas"></textarea>
-          </div>
-          <div>
-            <label for="maxInvoiceDate">Fecha máxima de recibo mensual / Monthly Invoice Cut-off</label>
-            <input id="maxInvoiceDate" type="date" />
-          </div>
-        </div>
-
-        <h3>Representante Legal / Legal Representative</h3>
-        <div class="grid two">
-          <div>
-            <label for="legalRepName">Nombre del representante / Representative Name<span>*</span></label>
-            <input id="legalRepName" type="text" placeholder="Nombre completo" required />
-          </div>
-          <div>
-            <label for="legalRepRole">Cargo / Position</label>
-            <input id="legalRepRole" type="text" placeholder="Cargo del representante" />
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div>
-            <label for="legalRepPhone">Teléfono o celular / Phone</label>
-            <input id="legalRepPhone" type="tel" placeholder="Número de contacto" />
-          </div>
-          <div>
-            <label for="legalRepEmail">E-mail</label>
-            <input id="legalRepEmail" type="email" placeholder="correo@ejemplo.com" />
-          </div>
-        </div>
-      </section>
-
-        <section class="card" aria-labelledby="contactos">
-        <h2 id="contactos">3. Contactos de facturación / Billing Contacts</h2>
-        <p>Complete la información de las personas responsables de los pagos.</p>
-
-        <div class="grid two">
-          <div class="contact-section">
-            <h4>Cuentas por pagar / Accounts Payable<span>*</span></h4>
-            <div class="grid two">
-              <div>
-                <label for="accountsPayableName">Nombre</label>
-                <input id="accountsPayableName" type="text" placeholder="Nombre completo" />
-              </div>
-              <div>
-                <label for="accountsPayableEmail">E-mail<span>*</span></label>
-                <input id="accountsPayableEmail" type="email" placeholder="correo@empresa.com" required />
-              </div>
-            </div>
-            <div class="grid two">
-              <div>
-                <label for="accountsPayablePhone">Teléfono</label>
-                <input id="accountsPayablePhone" type="tel" placeholder="Número de contacto" />
-              </div>
-              <div>
-                <label for="accountsPayableMobile">Celular</label>
-                <input id="accountsPayableMobile" type="tel" placeholder="Número móvil" />
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-section">
-            <h4>Contacto financiero / Financial Contact</h4>
-            <div class="grid two">
-              <div>
-                <label for="financeContactName">Nombre</label>
-                <input id="financeContactName" type="text" placeholder="Nombre completo" />
-              </div>
-              <div>
-                <label for="financeContactEmail">E-mail</label>
-                <input id="financeContactEmail" type="email" placeholder="correo@empresa.com" />
-              </div>
-            </div>
-            <div class="grid two">
-              <div>
-                <label for="financeContactPhone">Teléfono fijo</label>
-                <input id="financeContactPhone" type="tel" placeholder="Teléfono fijo" />
-              </div>
-              <div>
-                <label for="financeContactMobile">Celular</label>
-                <input id="financeContactMobile" type="tel" placeholder="Número móvil" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-section" style="margin-top: 1.5rem;">
-          <h4>Contacto directo / Primary Contact</h4>
-          <div class="grid two">
-            <div>
-              <label for="directContactName">Nombre</label>
-              <input id="directContactName" type="text" placeholder="Nombre completo" />
-            </div>
-            <div>
-              <label for="directContactEmail">E-mail</label>
-              <input id="directContactEmail" type="email" placeholder="correo@empresa.com" />
-            </div>
-          </div>
-          <div class="grid two">
-            <div>
-              <label for="directContactPhone">Teléfono fijo</label>
-              <input id="directContactPhone" type="tel" placeholder="Teléfono fijo" />
-            </div>
-            <div>
-              <label for="directContactMobile">Celular</label>
-              <input id="directContactMobile" type="tel" placeholder="Número móvil" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-        <section class="card" aria-labelledby="declaraciones">
-        <h2 id="declaraciones">4. Declaraciones y autorizaciones</h2>
-        <div class="declarations">
-          <label>
-            <input id="pepDeclaration" type="checkbox" required />
-            Declaro que ni yo ni la entidad representada somos personas
-            políticamente expuestas (PEP). / I declare that neither I nor the
-            represented entity are politically exposed persons.
-          </label>
-          <label>
-            <input id="accuracyDeclaration" type="checkbox" required />
-            Certifico que la información suministrada es veraz y completa. /
-            I certify that the information provided is truthful and complete.
-          </label>
-          <label>
-            <input id="dataPolicy" type="checkbox" required />
-            Acepto la política de tratamiento de datos personales de SPI
-            Américas. / I accept SPI Américas' data processing policy.
-          </label>
-        </div>
-          <button type="button" id="submitButton">Enviar solicitud / Submit</button>
-          <p class="helper-text">
-            Nunca envíe contraseñas ni información sensible a formularios no verificados.
-            / Never submit passwords or sensitive data through unknown forms.
-          </p>
-        </section>
-      </form>
-    </main>
-
-    <template id="extractedTemplate">
-      <dl></dl>
-    </template>
+        </form>
+    </div>
 
     <script>
-      const fieldPatterns = [
-        { id: "businessName", label: "Razón Social", regex: /Raz[oó]n Social[^\n]*\n+([^\n]+)/i },
-        { id: "taxIdType", label: "Tipo de identificación fiscal", regex: /Identificaci[oó]n Fiscal[^\n]*\n+([^\n]+)/i },
-        { id: "taxIdNumber", label: "Número de identificación", regex: /N[uú]mero de Identificaci[oó]n[^\n]*\n+([^\n]+)/i },
-        { id: "fiscalAddress", label: "Dirección fiscal", regex: /Direcci[oó]n Fiscal[^\n]*\n+([^\n]+)/i },
-        { id: "physicalAddress", label: "Dirección física", regex: /Direcci[oó]n F[ií]sica[^\n]*\n+([^\n]+)/i },
-        { id: "country", label: "País", regex: /Pa[ií]s[^\n]*\n+([^\n]+)/i },
-        { id: "region", label: "Regi[oó]n", regex: /Regi[oó]n[^\n]*\n+([^\n]+)/i },
-        { id: "generalPhone", label: "Teléfono fijo", regex: /Tel[eé]fono\s*F[ií]jo[^\n]*\n+([^\n]+)/i },
-        { id: "fax", label: "Fax", regex: /Tel[eé]fono\s*Fax[^\n]*\n+([^\n]+)/i },
-        { id: "website", label: "Página web", regex: /P[aá]gina\s*Web[^\n]*\n+([^\n]+)/i },
-        { id: "legalRepName", label: "Representante legal", regex: /Nombre del Representante Legal[^\n]*\n+([^\n]+)/i },
-        { id: "legalRepRole", label: "Cargo representante", regex: /Cargo del Representante Legal[^\n]*\n+([^\n]+)/i },
-        { id: "legalRepPhone", label: "Teléfono representante", regex: /Tel[eé]fono\s*o\s*Celular del Representante Legal[\s\S]*?(\+?[0-9][0-9\s()\-]{6,})/i },
-        { id: "legalRepEmail", label: "E-mail representante", regex: /E-mail del Representante Legal[^\n]*\n+([^\n]+)/i },
-        { id: "generalEmail", label: "E-mail", regex: /\*\s*E-mail\.?[^\n]*\n+([^\n@]+@[^\n]+)/i },
-        { id: "mainActivity", label: "Actividad principal", regex: /Actividad principal[^\n]*\n+([^\n]+)/i },
-        { id: "invoiceReception", label: "Radicación de facturas", regex: /Radicaci[oó]n de facturas[^\n]*\n+([\s\S]+?)(?=\n\s*(?:Fecha|\*|Nombre|Contacto|$))/i },
-        { id: "maxInvoiceDate", label: "Fecha máxima recibo", regex: /Fecha m[aá]xima de recibo mensual[\s\S]*?(\d{1,2}[\s\/]+\d{1,2}[\s\/]+\d{2,4})/i },
-        { id: "accountsPayableEmail", label: "Email cuentas por pagar", regex: /Contacto cuentas por pagar[\s\S]*?E-mail\.?\s*\n+([^\n]+)/i }
-      ];
+        // --- Variables de la API de Gemini ---
+        // La API Key se deja vacía; el entorno la proporcionará en tiempo de ejecución.
+        const apiKey = ""; 
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
 
-      const radioPatterns = [
-        {
-          name: "thirdType",
-          options: [
-            { value: "Cliente", regex: /Tipo de tercero[\s\S]*?Cliente\s*(?:✓|✔|X|SI|Sí|Selected)/i },
-            { value: "Proveedor", regex: /Tipo de tercero[\s\S]*?Proveedor\s*(?:✓|✔|X|SI|Sí|Selected)/i }
-          ]
-        },
-        {
-          name: "entityType",
-          options: [
-            { value: "Natural", regex: /Tipo de Persona[\s\S]*?Natural\s*(?:✓|✔|X|SI|Sí|Selected)/i },
-            { value: "Jurídica", regex: /Tipo de Persona[\s\S]*?Jur[ií]dica\s*(?:✓|✔|X|SI|Sí|Selected)/i }
-          ]
-        }
-      ];
-
-      const outputLabels = {
-        businessName: "Razón Social",
-        taxIdType: "Tipo ID Fiscal",
-        taxIdNumber: "Número ID",
-        fiscalAddress: "Dirección Fiscal",
-        physicalAddress: "Dirección Física",
-        country: "País",
-        region: "Región",
-        generalPhone: "Teléfono Fijo",
-        fax: "Fax",
-        website: "Página Web",
-        legalRepName: "Representante Legal",
-        legalRepRole: "Cargo",
-        legalRepPhone: "Teléfono Representante",
-        legalRepEmail: "Email Representante",
-        generalEmail: "Email",
-        mainActivity: "Actividad Principal",
-        invoiceReception: "Radicación Facturas",
-        maxInvoiceDate: "Fecha Máxima Recepción",
-        accountsPayableEmail: "Email CxP"
-      };
-
-      const aggregations = {};
-
-      function cleanValue(value) {
-        if (!value) return "";
-        return value.replace(/\s+/g, " ").replace(/\s*,\s*/g, ", ").trim();
-      }
-
-      function parseDate(raw) {
-        if (!raw) return "";
-        const sanitized = raw.replace(/\s+/g, "");
-        const match = sanitized.match(/(\d{1,2})[\/](\d{1,2})[\/](\d{2,4})/);
-        if (match) {
-          const [_, day, month, year] = match;
-          const formattedYear = year.length === 2 ? `20${year}` : year;
-          const date = new Date(`${formattedYear}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`);
-          if (!isNaN(date.getTime())) {
-            return date.toISOString().split("T")[0];
-          }
-        }
-        return "";
-      }
-
-      function parseDocument(text) {
-        if (!text) return {};
-        const info = {};
-        for (const { id, regex } of fieldPatterns) {
-          const match = regex.exec(text);
-          if (match && match[1]) {
-            let value = cleanValue(match[1]);
-            if (id === "maxInvoiceDate") {
-              value = parseDate(match[1]);
+        // --- Definición del Esquema JSON ---
+        // Este esquema le dice a la IA qué campos exactos queremos extraer.
+        // Se basa en los campos del PDF adjunto.
+        const schema = {
+            type: "OBJECT",
+            properties: {
+                razonSocial: { type: "STRING", description: "Razón Social o Nombre Completo de la empresa" },
+                tipoPersona: { type: "STRING", description: "Jurídica o Natural" },
+                tipoIdentificacion: { type: "STRING", description: "Tipo de identificación fiscal, ej: NIT, RUT, CUIT" },
+                numeroIdentificacion: { type: "STRING", description: "El número de identificación fiscal" },
+                direccionFiscal: { type: "STRING", description: "La dirección fiscal completa (calle, número, ciudad)" },
+                pais: { type: "STRING" },
+                region: { type: "STRING", description: "Región, Provincia o Departamento" },
+                telefonoFijo: { type: "STRING" },
+                paginaWeb: { type: "STRING" },
+                nombreRepLegal: { type: "STRING", description: "Nombre completo del Representante Legal" },
+                cargoRepLegal: { type: "STRING", description: "Cargo del Representante Legal (ej. CEO, Gerente General)" },
+                telefonoRepLegal: { type: "STRING" },
+                emailRepLegal: { type: "STRING" },
+                actividadPrincipal: { type: "STRING", description: "Actividad económica principal de la empresa" },
             }
-            if (value) {
-              info[id] = value;
-            }
-          }
-        }
-
-        for (const { name, options } of radioPatterns) {
-          for (const option of options) {
-            if (option.regex.test(text)) {
-              info[name] = option.value;
-              break;
-            }
-          }
-        }
-
-        return info;
-      }
-
-      function fillForm(info) {
-        Object.entries(info).forEach(([id, value]) => {
-          if (id === "thirdType" || id === "entityType") {
-            const radio = document.querySelector(`input[name="${id}"][value="${value}"]`);
-            if (radio) {
-              radio.checked = true;
-            }
-            return;
-          }
-
-          const element = document.getElementById(id);
-          if (!element) return;
-
-          if (element.type === "date" && value) {
-            element.value = value;
-          } else if (element.tagName === "TEXTAREA") {
-            element.value = value;
-          } else if (element) {
-            element.value = value;
-          }
-        });
-      }
-
-      function renderExtracted(info, container) {
-        if (!container) return;
-        if (!info || Object.keys(info).length === 0) {
-          container.textContent = "No se detectó información en este documento.";
-          return;
-        }
-        const template = document.getElementById("extractedTemplate");
-        const fragment = template.content.cloneNode(true);
-        const list = fragment.querySelector("dl");
-        Object.entries(info).forEach(([id, value]) => {
-          if (!outputLabels[id]) return;
-          const dt = document.createElement("dt");
-          dt.textContent = outputLabels[id];
-          const dd = document.createElement("dd");
-          dd.textContent = value;
-          list.append(dt, dd);
-        });
-        container.innerHTML = "";
-        container.appendChild(list);
-      }
-
-      function mergeInfo(info) {
-        Object.entries(info).forEach(([key, value]) => {
-          if (!value) return;
-          aggregations[key] = value;
-        });
-        fillForm(aggregations);
-      }
-
-      function handleFile(event, outputId) {
-        const file = event.target.files?.[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = () => {
-          const text = typeof reader.result === "string" ? reader.result : "";
-          const info = parseDocument(text);
-          mergeInfo(info);
-          renderExtracted(info, document.getElementById(outputId));
         };
 
-        if (file.type === "application/pdf") {
-          reader.readAsText(file);
-        } else {
-          reader.readAsText(file, "UTF-8");
-        }
-      }
+        // --- Elementos del DOM ---
+        const form = document.getElementById('onboardingForm');
+        const extractButton = document.getElementById('extractButton');
+        const loader = document.getElementById('loader');
+        const buttonText = document.getElementById('buttonText');
+        const messageDiv = document.getElementById('message');
+        const fileConstitucionInput = document.getElementById('fileConstitucion');
+        const fileLegalInput = document.getElementById('fileLegal');
 
-      document.getElementById("certificateUpload").addEventListener("change", (event) => handleFile(event, "certificateOutput"));
-      document.getElementById("representationUpload").addEventListener("change", (event) => handleFile(event, "representationOutput"));
+        // --- Lógica de Eventos ---
 
-      document.getElementById("submitButton").addEventListener("click", () => {
-        const form = document.getElementById("supplierForm");
-        const formValid = form?.reportValidity?.() ?? true;
-        if (formValid) {
-          alert("¡Gracias! La información ha sido registrada (simulación).");
-        } else {
-          alert("Por favor, complete los campos obligatorios y acepte las declaraciones.");
+        // Al hacer clic en el botón "Analizar Documentos"
+        extractButton.addEventListener('click', handleExtractData);
+
+        // Al enviar el formulario final
+        form.addEventListener('submit', handleSubmit);
+
+        /**
+         * Función principal para manejar la extracción de datos.
+         */
+        async function handleExtractData() {
+            const file1 = fileConstitucionInput.files[0];
+            const file2 = fileLegalInput.files[0];
+
+            if (!file1 || !file2) {
+                showMessage('Por favor, carga ambos documentos antes de analizar.', 'error');
+                return;
+            }
+
+            setLoading(true);
+            showMessage('Analizando documentos... esto puede tardar un momento.', 'info');
+
+            try {
+                // 1. Convertir archivos a base64
+                const [base64File1, base64File2] = await Promise.all([
+                    fileToBase64(file1),
+                    fileToBase64(file2)
+                ]);
+
+                // 2. Construir el prompt para la IA
+                const prompt = `
+                    Analiza estos dos documentos:
+                    1. Un certificado de constitución legal.
+                    2. Un documento de representación legal.
+
+                    Extrae la información clave de la empresa basándote en el esquema JSON proporcionado. 
+                    Si un campo no se encuentra, déjalo vacío. 
+                    Devuelve únicamente el objeto JSON.
+                `;
+
+                // 3. Construir el payload de la API
+                const payload = {
+                    contents: [{
+                        role: "user",
+                        parts: [
+                            { text: prompt },
+                            { inlineData: { mimeType: file1.type, data: base64File1 } },
+                            { inlineData: { mimeType: file2.type, data: base64File2 } }
+                        ]
+                    }],
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: schema
+                    }
+                };
+
+                // 4. Llamar a la API (con reintentos)
+                const result = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                // 5. Procesar la respuesta
+                const jsonString = result.candidates[0].content.parts[0].text;
+                const extractedData = JSON.parse(jsonString);
+
+                // 6. Poblar el formulario
+                populateForm(extractedData);
+                
+                showMessage('Formulario pre-llenado con éxito. Por favor, verifica la información.', 'success');
+
+            } catch (error) {
+                console.error('Error en la extracción:', error);
+                showMessage('Error al analizar los documentos. Por favor, inténtalo de nuevo.', 'error');
+            } finally {
+                setLoading(false);
+            }
         }
-      });
+
+        /**
+         * Rellena los campos del formulario con los datos extraídos por la IA.
+         */
+        function populateForm(data) {
+            document.getElementById('razonSocial').value = data.razonSocial || '';
+            document.getElementById('tipoPersona').value = data.tipoPersona || '';
+            document.getElementById('tipoIdentificacion').value = data.tipoIdentificacion || '';
+            document.getElementById('numeroIdentificacion').value = data.numeroIdentificacion || '';
+            document.getElementById('direccionFiscal').value = data.direccionFiscal || '';
+            document.getElementById('pais').value = data.pais || '';
+            document.getElementById('region').value = data.region || '';
+            document.getElementById('telefonoFijo').value = data.telefonoFijo || '';
+            document.getElementById('paginaWeb').value = data.paginaWeb || '';
+            document.getElementById('nombreRepLegal').value = data.nombreRepLegal || '';
+            document.getElementById('cargoRepLegal').value = data.cargoRepLegal || '';
+            document.getElementById('telefonoRepLegal').value = data.telefonoRepLegal || '';
+            document.getElementById('emailRepLegal').value = data.emailRepLegal || '';
+            // 'actividadPrincipal' no tiene un campo visible en este diseño, pero se extrae.
+        }
+
+        /**
+         * Maneja el envío final del formulario.
+         */
+        function handleSubmit(e) {
+            e.preventDefault();
+            // Aquí iría la lógica para enviar los datos del formulario a un backend.
+            // Por ahora, solo mostramos un mensaje de éxito.
+            showMessage('¡Formulario enviado con éxito! Gracias por registrarte.', 'success');
+            form.reset();
+            window.scrollTo(0, 0);
+        }
+
+        // --- Funciones de Utilidad ---
+
+        /**
+         * Muestra un mensaje de estado (éxito, error, info).
+         */
+        function showMessage(message, type = 'info') {
+            messageDiv.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800', 'bg-blue-100', 'text-blue-800');
+            
+            if (type === 'success') {
+                messageDiv.classList.add('bg-green-100', 'text-green-800');
+            } else if (type === 'error') {
+                messageDiv.classList.add('bg-red-100', 'text-red-800');
+            } else {
+                messageDiv.classList.add('bg-blue-100', 'text-blue-800');
+            }
+            
+            messageDiv.textContent = message;
+            messageDiv.classList.remove('hidden');
+        }
+
+        /**
+         * Controla el estado visual del botón de carga/análisis.
+         */
+        function setLoading(isLoading) {
+            if (isLoading) {
+                loader.classList.remove('hidden');
+                buttonText.classList.add('hidden');
+                extractButton.disabled = true;
+                extractButton.classList.add('opacity-75', 'cursor-not-allowed');
+            } else {
+                loader.classList.add('hidden');
+                buttonText.classList.remove('hidden');
+                extractButton.disabled = false;
+                extractButton.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        }
+
+        /**
+         * Convierte un objeto File a una cadena base64.
+         */
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result.split(',')[1]); // Devuelve solo la data base64
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        /**
+         * Función fetch con reintentos y backoff exponencial para manejar throttling.
+         */
+        async function fetchWithRetry(url, options, retries = 3, delay = 1000) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        // Solo reintentar en errores de servidor (5xx) o rate limiting (429)
+                        if (response.status === 429 || response.status >= 500) {
+                            throw new Error(`Server error: ${response.status}`);
+                        }
+                        // Errores de cliente (4xx) no se reintentan
+                        const errorData = await response.json();
+                        console.error("API Error (no-retry):", errorData);
+                        throw new Error(errorData.error.message || `Error ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    if (i === retries - 1) throw error; // Lanzar error en el último reintento
+                    // No loguear errores de reintento en la consola como errores
+                    // console.log(`Retry ${i+1}/${retries} after ${delay}ms...`);
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2; // Backoff exponencial
+                }
+            }
+        }
+
     </script>
-  </body>
+</body>
 </html>
